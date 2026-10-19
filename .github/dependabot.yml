@@ -3,6 +3,9 @@ version: 2
 updates:
   - package-ecosystem: "pip"
     directory: "/"
+    # The requirements files use >= ranges. Open a PR only when a new version
+    # is outside the range, not to raise a floor.
+    versioning-strategy: increase-if-necessary
     schedule:
       interval: "weekly"
       day: "monday"
