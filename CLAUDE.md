@@ -40,7 +40,7 @@ Only tested with the **FireBoard Pellet Drive (model: FBXPD)**. Other models use
 
 HACS manages the running instance. HACS shows an update in HA only when a GitHub release has a newer version.
 
-1. Change `version` in `custom_components/fireboard/manifest.json` and `pyproject.toml`. Add a Changelog entry in `README.md`.
+1. Change `version` in `custom_components/fireboard/manifest.json` and `pyproject.toml`, and the two version lines in `STATUS.md`. Add a Changelog entry in `README.md`.
 2. Merge to `main`.
 3. Create the release: `gh release create vX.Y.Z --generate-notes`. The tag must match the manifest version.
 4. In HA: Settings → Updates → FireBoard → Update, then restart.
