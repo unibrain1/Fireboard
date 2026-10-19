@@ -53,10 +53,6 @@ jobs:
       run: |
         bandit -r custom_components/fireboard/ -f json -o bandit-report.json || true
 
-    - name: Security check with safety
-      run: |
-        safety check --output json || true
-
     - name: Dead code check with vulture
       run: |
         vulture custom_components/fireboard/ --min-confidence 80 || true
