@@ -5,7 +5,7 @@
 A Home Assistant integration for FireBoard wireless thermometers using direct cloud API communication.
 
 > **Forked from**: [GarthDB/ha-fireboard](https://github.com/GarthDB/ha-fireboard)  
-> **This fork**: [unibrain1/ha-fireboard](https://github.com/unibrain1/ha-fireboard)
+> **This fork**: [unibrain1/Fireboard](https://github.com/unibrain1/Fireboard)
 
 ## What's Different in This Fork
 
@@ -235,7 +235,7 @@ automation:
 ## Project Structure
 
 ```
-ha-fireboard/
+Fireboard/
 ├── custom_components/
 │   └── fireboard/
 │       ├── __init__.py          # Integration setup

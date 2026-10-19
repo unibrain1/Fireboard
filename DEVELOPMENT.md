@@ -10,8 +10,8 @@
 ## Setup
 
 ```bash
-git clone https://github.com/unibrain1/ha-fireboard.git
-cd ha-fireboard
+git clone https://github.com/unibrain1/Fireboard.git
+cd Fireboard
 pip install -r requirements-dev.txt
 ```
 
@@ -58,7 +58,7 @@ ln -s $(pwd)/custom_components/fireboard ~/.homeassistant/custom_components/fire
 ## Project Structure
 
 ```
-ha-fireboard/
+Fireboard/
 ├── custom_components/fireboard/
 │   ├── __init__.py          # Integration setup
 │   ├── api_client.py        # FireBoard Cloud API client
@@ -113,5 +113,5 @@ logger:
 
 ## Getting Help
 
-- [Issues](https://github.com/unibrain1/ha-fireboard/issues)
+- [Issues](https://github.com/unibrain1/Fireboard/issues)
 - [Home Assistant Community](https://community.home-assistant.io/)
