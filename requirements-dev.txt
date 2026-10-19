@@ -5,6 +5,6 @@ flake8>=5.0.0
 mypy>=1.0.0
 pre-commit>=2.20.0
 bandit>=1.7.0
-safety>=2.0.0
+safety>=3.8.1
 vulture>=2.0.0
 
