@@ -1,6 +1,6 @@
 # Project Status
 
-## Current Version: 0.2.0
+## Current Version: 0.3.0
 
 ### ✅ Working
 
@@ -29,6 +29,6 @@
 
 ---
 
-**Last Updated:** June 2026
-**Version:** 0.2.0
+**Last Updated:** October 2026
+**Version:** 0.3.0
 **Repo:** <https://github.com/unibrain1/Fireboard>
