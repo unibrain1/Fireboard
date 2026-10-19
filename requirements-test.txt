@@ -23,7 +23,7 @@ vulture>=2.7.0
 # We'll test our code directly without Home Assistant-specific testing tools
 
 # Integration dependencies
-aiohttp>=3.8.0
+aiohttp>=3.14.5
 paho-mqtt>=1.6.0
 
 # Skip Home Assistant installation for now - focus on basic testing
