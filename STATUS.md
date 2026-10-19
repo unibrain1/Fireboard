@@ -31,4 +31,4 @@
 
 **Last Updated:** June 2026
 **Version:** 0.2.0
-**Repo:** <https://github.com/unibrain1/ha-fireboard>
+**Repo:** <https://github.com/unibrain1/Fireboard>

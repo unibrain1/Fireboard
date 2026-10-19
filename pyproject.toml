@@ -27,10 +27,10 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/unibrain1/ha-fireboard"
-Repository = "https://github.com/unibrain1/ha-fireboard.git"
-Issues = "https://github.com/unibrain1/ha-fireboard/issues"
-Documentation = "https://github.com/unibrain1/ha-fireboard#readme"
+Homepage = "https://github.com/unibrain1/Fireboard"
+Repository = "https://github.com/unibrain1/Fireboard.git"
+Issues = "https://github.com/unibrain1/Fireboard/issues"
+Documentation = "https://github.com/unibrain1/Fireboard#readme"
 
 [project.optional-dependencies]
 dev = [
