@@ -40,6 +40,8 @@ The polling interval is now set during integration setup and defaults to **60 se
 - **Battery Monitoring**: Track battery levels on wireless devices
 - **Connectivity Status**: Binary sensor for device online/offline state
 - **Cloud API**: Uses the official FireBoard Cloud API — no MQTT broker required
+- **HACS updates**: Install through HACS as a custom repository and get update notices in Home Assistant
+
 ## Supported Devices
 
 - **FireBoard 2 Pro**: 6-channel WiFi thermometer
@@ -49,9 +51,26 @@ The polling interval is now set during integration setup and defaults to **60 se
 
 ## Installation
 
+### HACS (recommended)
+
+HACS shows an update in Home Assistant when a new release is published.
+
+1. In Home Assistant, open **HACS**.
+2. Open the **⋮** menu and select **Custom repositories**.
+3. Add `https://github.com/unibrain1/Fireboard` with the type **Integration**.
+4. Open **FireBoard** in HACS and click **Download**.
+5. Restart Home Assistant.
+6. Go to **Settings → Devices & Services → Add Integration** and search for **FireBoard**.
+
+If you installed the integration manually before, do steps 1–5. HACS replaces the files in `custom_components/fireboard/`. Your config entry and entities stay the same.
+
+### Manual
+
 1. Copy the `custom_components/fireboard/` directory to your Home Assistant config directory
 2. Restart Home Assistant
 3. Go to **Settings → Devices & Services → Add Integration** and search for **FireBoard**
+
+Manual installs do not get update notices.
 
 ## Configuration
 
@@ -253,6 +272,10 @@ Fireboard/
 
 ## Changelog
 
+### v0.3.0
+- **New**: HACS support — Home Assistant shows an update when a new release is published
+- **Fix**: Removed leftover MQTT code and the `paho-mqtt` and `aiohttp` requirements
+
 ### v0.2.0
 - **Fix**: Temperatures no longer show as Unknown — `current_temp` now read from REST API directly
 - **New**: Alert threshold sensors (`alert_max`, `alert_min`) created automatically per channel
@@ -268,7 +291,7 @@ Fireboard/
 - Temperature sensor support
 - Battery monitoring
 - Connectivity status
-- Manual installation
+- HACS compatibility
 
 ## License
 

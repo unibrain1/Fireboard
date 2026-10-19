@@ -4,7 +4,7 @@
 
 A Home Assistant custom integration for FireBoard wireless thermometers. It polls the FireBoard Cloud REST API and exposes temperature sensors, alert threshold sensors, connectivity, and battery status as HA entities.
 
-The running instance lives at `/Volumes/config/custom_components/fireboard/` on a Raspberry Pi (mounted over the network). After editing code, see "Deploying to Running HA" below.
+The running instance lives at `/Volumes/config/custom_components/fireboard/` on a Raspberry Pi (mounted over the network). HACS installs it from GitHub releases. See "Releasing" and "Testing on the running HA" below.
 
 ## Tests
 
@@ -36,12 +36,24 @@ Alert sensors only exist for channels that have an active alert configured in th
 
 Only tested with the **FireBoard Pellet Drive (model: FBXPD)**. Other models use the same API and should work but are unverified. See `docs/sample_api_response_FBXPD.json` for the full API response shape.
 
-## Deploying to Running HA
+## Releasing
+
+HACS manages the running instance. HACS shows an update in HA only when a GitHub release has a newer version.
+
+1. Change `version` in `custom_components/fireboard/manifest.json` and `pyproject.toml`. Add a Changelog entry in `README.md`.
+2. Merge to `main`.
+3. Create the release: `gh release create vX.Y.Z --generate-notes`. The tag must match the manifest version.
+4. In HA: Settings → Updates → FireBoard → Update, then restart.
+
+## Testing on the running HA
+
+The HA config share is `smb://homeassistant.unibrain.org/config`. Mount it in Finder (⌘K). It mounts at `/Volumes/config`.
 
 ```bash
-# After editing integration files
 cp custom_components/fireboard/<file>.py /Volumes/config/custom_components/fireboard/
 
 # Then in HA UI: Settings → Devices & Services → FireBoard → Reload
 # (Full restart only needed when adding new entity classes or changing manifest.json)
 ```
+
+A manual copy makes the files differ from the version that HACS reports. After a test, install the release through HACS again.
