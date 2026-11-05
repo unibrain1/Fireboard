@@ -1,3 +1,4 @@
+# Local tool, cache and editor files.
 .claude/*
 !.claude/project.md
 !.claude/settings.json
