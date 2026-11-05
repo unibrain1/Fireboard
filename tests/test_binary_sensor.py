@@ -2,9 +2,8 @@
 
 from __future__ import annotations
 
-from unittest.mock import AsyncMock, patch
+from unittest.mock import patch
 
-import pytest
 from homeassistant.config_entries import ConfigEntry
 
 from custom_components.fireboard.const import DOMAIN

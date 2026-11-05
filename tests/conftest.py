@@ -48,7 +48,6 @@ from homeassistant.const import CONF_EMAIL, CONF_PASSWORD
 from custom_components.fireboard.const import (
     CONF_POLLING_INTERVAL,
     DEFAULT_POLLING_INTERVAL,
-    DOMAIN,
 )
 
 

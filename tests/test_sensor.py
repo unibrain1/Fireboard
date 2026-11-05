@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from unittest.mock import AsyncMock, patch
 
-import pytest
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import UnitOfTemperature
 
@@ -113,7 +112,7 @@ async def test_temperature_sensor_unavailable(
 
 
 async def test_alert_sensor_max(hass, mock_coordinator_data, mock_config_entry_data):
-    """FireBoardAlertSensor returns the temp_max threshold for an active alert."""
+    """Check that FireBoardAlertSensor gives temp_max for an active alert."""
     from custom_components.fireboard.coordinator import FireBoardDataUpdateCoordinator
     from custom_components.fireboard.sensor import FireBoardAlertSensor
 
@@ -122,18 +121,14 @@ async def test_alert_sensor_max(hass, mock_coordinator_data, mock_config_entry_d
         "alerts"
     ] = [{"enabled": True, "temp_max": 165.0, "temp_min": None}]
 
-    config_entry = ConfigEntry(
-        domain=DOMAIN, title="Test", data=mock_config_entry_data
-    )
+    config_entry = ConfigEntry(domain=DOMAIN, title="Test", data=mock_config_entry_data)
 
     with patch("custom_components.fireboard.coordinator.FireBoardApiClient"):
         coordinator = FireBoardDataUpdateCoordinator(hass, config_entry)
         coordinator.data = mock_coordinator_data
         coordinator.last_update_success = True
 
-        sensor = FireBoardAlertSensor(
-            coordinator, "test-device-uuid-123", 1, "max"
-        )
+        sensor = FireBoardAlertSensor(coordinator, "test-device-uuid-123", 1, "max")
 
         assert sensor.native_value == 165.0
         assert sensor.native_unit_of_measurement == UnitOfTemperature.FAHRENHEIT
@@ -142,7 +137,7 @@ async def test_alert_sensor_max(hass, mock_coordinator_data, mock_config_entry_d
 
 
 async def test_alert_sensor_min(hass, mock_coordinator_data, mock_config_entry_data):
-    """FireBoardAlertSensor returns the temp_min threshold for an active alert."""
+    """Check that FireBoardAlertSensor gives temp_min for an active alert."""
     from custom_components.fireboard.coordinator import FireBoardDataUpdateCoordinator
     from custom_components.fireboard.sensor import FireBoardAlertSensor
 
@@ -150,18 +145,14 @@ async def test_alert_sensor_min(hass, mock_coordinator_data, mock_config_entry_d
         "alerts"
     ] = [{"enabled": True, "temp_max": None, "temp_min": 40.0}]
 
-    config_entry = ConfigEntry(
-        domain=DOMAIN, title="Test", data=mock_config_entry_data
-    )
+    config_entry = ConfigEntry(domain=DOMAIN, title="Test", data=mock_config_entry_data)
 
     with patch("custom_components.fireboard.coordinator.FireBoardApiClient"):
         coordinator = FireBoardDataUpdateCoordinator(hass, config_entry)
         coordinator.data = mock_coordinator_data
         coordinator.last_update_success = True
 
-        sensor = FireBoardAlertSensor(
-            coordinator, "test-device-uuid-123", 1, "min"
-        )
+        sensor = FireBoardAlertSensor(coordinator, "test-device-uuid-123", 1, "min")
 
         assert sensor.native_value == 40.0
         assert "Alert Min" in sensor.name
@@ -170,7 +161,7 @@ async def test_alert_sensor_min(hass, mock_coordinator_data, mock_config_entry_d
 async def test_alert_sensor_disabled_returns_none(
     hass, mock_coordinator_data, mock_config_entry_data
 ):
-    """FireBoardAlertSensor returns None when no enabled alert matches."""
+    """Check that FireBoardAlertSensor returns None when no enabled alert matches."""
     from custom_components.fireboard.coordinator import FireBoardDataUpdateCoordinator
     from custom_components.fireboard.sensor import FireBoardAlertSensor
 
@@ -179,18 +170,14 @@ async def test_alert_sensor_disabled_returns_none(
         "alerts"
     ] = [{"enabled": False, "temp_max": 165.0, "temp_min": None}]
 
-    config_entry = ConfigEntry(
-        domain=DOMAIN, title="Test", data=mock_config_entry_data
-    )
+    config_entry = ConfigEntry(domain=DOMAIN, title="Test", data=mock_config_entry_data)
 
     with patch("custom_components.fireboard.coordinator.FireBoardApiClient"):
         coordinator = FireBoardDataUpdateCoordinator(hass, config_entry)
         coordinator.data = mock_coordinator_data
         coordinator.last_update_success = True
 
-        sensor = FireBoardAlertSensor(
-            coordinator, "test-device-uuid-123", 1, "max"
-        )
+        sensor = FireBoardAlertSensor(coordinator, "test-device-uuid-123", 1, "max")
 
         assert sensor.native_value is None
 
@@ -208,9 +195,7 @@ async def test_alert_sensor_setup_creates_entity_for_active_alert(
         "alerts"
     ] = [{"enabled": True, "temp_max": 165.0, "temp_min": None}]
 
-    config_entry = ConfigEntry(
-        domain=DOMAIN, title="Test", data=mock_config_entry_data
-    )
+    config_entry = ConfigEntry(domain=DOMAIN, title="Test", data=mock_config_entry_data)
 
     mock_coordinator = AsyncMock()
     mock_coordinator.data = mock_coordinator_data

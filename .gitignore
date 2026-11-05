@@ -1,4 +1,7 @@
-.claude/
+.claude/*
+!.claude/project.md
+!.claude/settings.json
+!.claude/rules/
 __pycache__/
 *.pyc
 .coverage
@@ -9,3 +12,6 @@ coverage.xml
 # Editor files
 .vscode/
 *.code-workspace
+
+# flow plan files
+docs/plans/
