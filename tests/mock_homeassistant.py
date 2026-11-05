@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import types
 from enum import Enum
 from typing import Any, Dict
 from unittest.mock import MagicMock
@@ -45,7 +46,7 @@ class FlowResult:
             return self.data.get(key)
 
     def get(self, key, default=None):
-        """Support dict.get() method."""
+        """Support the dict get method."""
         try:
             return self[key]
         except (KeyError, TypeError):
@@ -308,9 +309,6 @@ class EntityCategory:
 # Mock configuration constants
 CONF_EMAIL = "email"
 CONF_PASSWORD = "password"
-
-
-import types
 
 
 class MockModule(types.ModuleType):

@@ -1,3 +1,6 @@
 [flake8]
 max-line-length = 88
 extend-ignore = E203, W503
+per-file-ignores =
+    # Fake Home Assistant classes. A docstring for each one adds nothing.
+    tests/mock_homeassistant.py: D102, D107

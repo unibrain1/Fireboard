@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from unittest.mock import AsyncMock, MagicMock, patch
+from unittest.mock import AsyncMock, MagicMock
 
 import aiohttp
 import pytest
@@ -10,7 +10,6 @@ import pytest
 from custom_components.fireboard.api_client import (
     FireBoardApiClient,
     FireBoardApiClientAuthenticationError,
-    FireBoardApiClientCommunicationError,
     FireBoardApiClientRateLimitError,
 )
 

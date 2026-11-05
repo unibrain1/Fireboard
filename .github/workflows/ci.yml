@@ -5,7 +5,6 @@ on:
   push:
     branches: [ main, develop ]
   pull_request:
-    branches: [ main ]
 
 env:
   # Opt into Node.js 24 to silence Node 20 deprecation warnings from actions
@@ -43,15 +42,15 @@ jobs:
 
     - name: Lint with flake8
       run: |
-        flake8 custom_components/fireboard tests/ || true
+        flake8 custom_components/fireboard tests/
 
     - name: Check formatting with black
       run: |
-        black --check custom_components/fireboard tests/ || true
+        black --check custom_components/fireboard tests/
 
     - name: Check import sorting with isort
       run: |
-        isort --check-only custom_components/fireboard tests/ || true
+        isort --check-only custom_components/fireboard tests/
 
     - name: Security check with bandit
       run: |
