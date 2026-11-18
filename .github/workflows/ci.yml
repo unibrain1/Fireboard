@@ -3,7 +3,7 @@ name: CI
 # Home Assistant custom component CI workflow
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ main, "milestone/**" ]
   pull_request:
 
 env:
