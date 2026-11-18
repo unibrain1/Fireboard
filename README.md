@@ -273,9 +273,7 @@ Fireboard/
 ## Changelog
 
 ### v0.4.0
-- **Fix**: The authentication debug log no longer shows cookie values or the CSRF token
-- **Change**: CI now fails when mypy, bandit or vulture finds a problem (#17)
-- **Change**: CI runs on pushes to `main` and `milestone/**` branches
+- **Fix**: With debug logging on, the Home Assistant log no longer shows your FireBoard login cookies or security token
 
 ### v0.3.0
 - **New**: HACS support — Home Assistant shows an update when a new release is published
