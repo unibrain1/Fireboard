@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import logging
 from unittest.mock import AsyncMock, MagicMock
 
 import aiohttp
@@ -35,6 +36,33 @@ async def test_authenticate_success():
     assert client._token == "test-token-12345"
     assert client._cookie_jar is not None
     assert client.auth_token == "test-token-12345"
+
+
+async def test_authenticate_debug_log_has_no_secrets(caplog):
+    """Test that the debug log names the cookies but holds no secret value."""
+    session = MagicMock(spec=aiohttp.ClientSession)
+    response = MagicMock()
+    response.status = 200
+    response.json = AsyncMock(return_value={"key": "test-token-12345"})
+    response.raise_for_status = MagicMock()
+    session.post = AsyncMock(return_value=response)
+
+    session_cookie = MagicMock(key="sessionid", value="secret-session-value")
+    csrf_cookie = MagicMock(key="csrftoken", value="secret-csrf-value")
+    session.cookie_jar = [session_cookie, csrf_cookie]
+
+    client = FireBoardApiClient("test@example.com", "secret-password", session)
+
+    with caplog.at_level(logging.DEBUG, logger="custom_components.fireboard"):
+        await client.authenticate()
+
+    assert client._csrf_token == "secret-csrf-value"
+    assert "sessionid" in caplog.text
+    assert "csrftoken" in caplog.text
+    assert "secret-session-value" not in caplog.text
+    assert "secret-csrf-value" not in caplog.text
+    assert "test-token-12345" not in caplog.text
+    assert "secret-password" not in caplog.text
 
 
 async def test_authenticate_invalid_credentials():

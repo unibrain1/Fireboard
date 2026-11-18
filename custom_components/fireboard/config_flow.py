@@ -40,7 +40,9 @@ STEP_USER_DATA_SCHEMA = vol.Schema(
 )
 
 
-class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
+# mypy runs without Home Assistant installed, so the import is untyped and
+# mypy rejects the domain= class keyword.
+class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):  # type: ignore[call-arg]
     """Handle a config flow for FireBoard."""
 
     VERSION = 1

@@ -51,7 +51,7 @@ class FireBoardApiClient:
         self._session = session
         self._token: str | None = None
         self._base_url = API_BASE_URL
-        self._cookie_jar: aiohttp.CookieJar | None = None
+        self._cookie_jar: aiohttp.abc.AbstractCookieJar | None = None
         self._csrf_token: str | None = None
 
     async def authenticate(self) -> bool:
@@ -105,23 +105,22 @@ class FireBoardApiClient:
                     )
 
                 # Store the cookie jar for subsequent requests
-                self._cookie_jar = self._session.cookie_jar
+                cookie_jar = self._session.cookie_jar
+                self._cookie_jar = cookie_jar
 
                 # Extract CSRF token from cookies
-                for cookie in self._cookie_jar:
+                for cookie in cookie_jar:
                     if cookie.key == "csrftoken":
                         self._csrf_token = cookie.value
                         break
 
-                # Debug: Check what cookies we have
-                cookies = [
-                    f"{cookie.key}={cookie.value}" for cookie in self._cookie_jar
-                ]
+                # Cookie values and the CSRF token are secrets, so log names only
+                cookie_names = [cookie.key for cookie in cookie_jar]
                 _LOGGER.debug(
                     "Successfully authenticated with FireBoard API. "
-                    "Cookies: %s, CSRF: %s",
-                    ", ".join(cookies) if cookies else "None",
-                    self._csrf_token,
+                    "Cookies: %s, CSRF token found: %s",
+                    ", ".join(cookie_names) if cookie_names else "None",
+                    self._csrf_token is not None,
                 )
                 return True
 
