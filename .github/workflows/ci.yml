@@ -3,7 +3,7 @@ name: CI
 # Home Assistant custom component CI workflow
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ main, "milestone/**" ]
   pull_request:
 
 env:
@@ -52,13 +52,17 @@ jobs:
       run: |
         isort --check-only custom_components/fireboard tests/
 
+    - name: Type check with mypy
+      run: |
+        mypy custom_components/fireboard/
+
     - name: Security check with bandit
       run: |
-        bandit -r custom_components/fireboard/ -f json -o bandit-report.json || true
+        bandit -r custom_components/fireboard/
 
     - name: Dead code check with vulture
       run: |
-        vulture custom_components/fireboard/ --min-confidence 80 || true
+        vulture custom_components/fireboard/ --min-confidence 80
 
     - name: Test with pytest
       run: |

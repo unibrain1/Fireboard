@@ -98,6 +98,8 @@ def _channel_label(device_info: dict[str, Any], channel_number: int) -> str:
 class FireBoardTemperatureSensor(FireBoardEntity, SensorEntity):
     """Representation of a FireBoard temperature sensor."""
 
+    # Narrower than the base class (int | None): a channel sensor always has a channel
+    _channel_number: int
     _attr_device_class = SensorDeviceClass.TEMPERATURE
     _attr_state_class = SensorStateClass.MEASUREMENT
     _attr_native_unit_of_measurement = UnitOfTemperature.FAHRENHEIT
@@ -173,6 +175,8 @@ class FireBoardTemperatureSensor(FireBoardEntity, SensorEntity):
 class FireBoardAlertSensor(FireBoardEntity, SensorEntity):
     """Alert threshold sensor for a FireBoard channel."""
 
+    # Narrower than the base class, as in FireBoardTemperatureSensor
+    _channel_number: int
     _attr_device_class = SensorDeviceClass.TEMPERATURE
     _attr_state_class = SensorStateClass.MEASUREMENT
     _attr_native_unit_of_measurement = UnitOfTemperature.FAHRENHEIT

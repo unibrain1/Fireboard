@@ -7,7 +7,8 @@ backticks. The keys are in
 
 - test: `pytest tests/ --cov=custom_components/fireboard --cov-fail-under=80`
 - test_quick: `pytest tests/ -q`
-- lint: `flake8 custom_components/fireboard tests/ && black --check custom_components/fireboard tests/ && isort --check-only custom_components/fireboard tests/`
+- lint: `flake8 custom_components/fireboard tests/ && black --check custom_components/fireboard tests/ && isort --check-only custom_components/fireboard tests/ && mypy custom_components/fireboard/`
 - format: `black custom_components/fireboard tests/ && isort custom_components/fireboard tests/`
 - deploy: see "Releasing" in CLAUDE.md
 - plans: `docs/plans`
+- release_notes: `docs/releases/{version}.md`
