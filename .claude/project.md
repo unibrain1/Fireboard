@@ -11,3 +11,4 @@ backticks. The keys are in
 - format: `black custom_components/fireboard tests/ && isort custom_components/fireboard tests/`
 - deploy: see "Releasing" in CLAUDE.md
 - plans: `docs/plans`
+- release_notes: `docs/releases/{version}.md`
