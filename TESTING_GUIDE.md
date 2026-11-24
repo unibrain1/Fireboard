@@ -21,14 +21,14 @@ cp -r custom_components/fireboard /config/custom_components/
 
 Enter credentials in the config flow and click Submit.
 
-**Pass**: "Configuration successful", taken to device list  
+**Pass**: "Configuration successful", taken to device list
 **Fail**: Check logs for specific error — bad credentials return "Invalid email or password"
 
 ### Test 2: Device Discovery
 
 After configuration, verify devices appear under the integration.
 
-**Pass**: One device entry per FireBoard device on your account  
+**Pass**: One device entry per FireBoard device on your account
 **Fail**: Check HA logs in debug mode for API response details
 
 ---
@@ -83,17 +83,17 @@ For channels with alerts configured in the FireBoard app:
 
 ### Test 8: Invalid Credentials
 
-Remove and re-add the integration with a wrong password.  
+Remove and re-add the integration with a wrong password.
 **Pass**: Clear "Invalid email or password" error in the config flow UI
 
 ### Test 9: Network Interruption
 
-Disconnect internet while integration is running, wait 60 seconds, reconnect.  
+Disconnect internet while integration is running, wait 60 seconds, reconnect.
 **Pass**: Errors appear in logs, integration recovers automatically within one poll cycle
 
 ### Test 10: Token Expiration
 
-Let the integration run for several hours.  
+Let the integration run for several hours.
 **Pass**: Continues working seamlessly — re-authentication happens transparently
 
 ---
@@ -151,5 +151,5 @@ grep -i "error" /config/home-assistant.log | grep -i fireboard
 
 ## Rate Limit Check
 
-Default 60s interval = 60 API calls/hour. FireBoard allows 200/hour.  
+Default 60s interval = 60 API calls/hour. FireBoard allows 200/hour.
 If you see 429 errors, increase the polling interval by removing and re-adding the integration.

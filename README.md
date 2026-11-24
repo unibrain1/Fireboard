@@ -4,7 +4,7 @@
 
 A Home Assistant integration for FireBoard wireless thermometers using direct cloud API communication.
 
-> **Forked from**: [GarthDB/ha-fireboard](https://github.com/GarthDB/ha-fireboard)  
+> **Forked from**: [GarthDB/ha-fireboard](https://github.com/GarthDB/ha-fireboard)
 > **This fork**: [unibrain1/Fireboard](https://github.com/unibrain1/Fireboard)
 
 ## What's Different in This Fork
@@ -12,22 +12,28 @@ A Home Assistant integration for FireBoard wireless thermometers using direct cl
 The following fixes and improvements were made on top of the original GarthDB integration:
 
 ### Bug Fix: Temperatures Always Showing as Unknown
+
 The original integration relied on MQTT for temperature data. When MQTT was unavailable (which is typical), all temperature sensors showed `Unknown`. The fix extracts `current_temp` from the REST API channel data directly, so polling alone provides temperatures without requiring MQTT.
 
 ### Alert Threshold Sensors
+
 Dedicated sensor entities are now created for FireBoard alert thresholds set in the FireBoard app. For each channel with an active alert, new entities appear automatically:
+
 - `sensor.<device>_<channel>_alert_max` — maximum temperature alert threshold
 - `sensor.<device>_<channel>_alert_min` — minimum temperature alert threshold (if set)
 
 These can be used in automations and dashboard cards.
 
 ### Dynamic Entity Registration
+
 New channels, probes, and alerts added in the FireBoard app appear in Home Assistant automatically within one polling cycle — no reload required.
 
 ### Dynamic Sensor Naming
+
 Temperature and alert sensor names reflect the custom labels set in the FireBoard app. Renaming a probe in the FireBoard app updates the entity name in Home Assistant within one polling cycle.
 
 ### Configurable Polling Interval
+
 The polling interval is now set during integration setup and defaults to **60 seconds**. The minimum is 60 seconds to respect FireBoard's API rate limit.
 
 ---
@@ -90,29 +96,33 @@ Manual installs do not get update notices.
 
 Entity IDs are generated automatically from your device's name in the FireBoard app — nothing is hardcoded. The pattern is:
 
-```
+```text
 sensor.<grill_name>_<channel_label>
 ```
 
 For example, a grill named **"Smoker"** with a channel labelled **"Brisket"** produces `sensor.smoker_brisket`. Renaming either in the FireBoard app updates the entity name in HA within one poll cycle. Use **Developer Tools → States** and filter by your grill name to find your exact entity IDs.
 
 ### Temperature Sensors
+
 - One sensor per channel (up to 7 per device depending on model)
 - Named from the custom label set in the FireBoard app
 - Device class: `temperature` | Unit: Fahrenheit (°F)
 - Attributes: `channel`, `label`, `target_temp`
 
 ### Alert Threshold Sensors
+
 - Created automatically for channels that have active alerts configured in the FireBoard app
 - Named `<device> <channel label> Alert Max` / `Alert Min`
 - Device class: `temperature` | Unit: Fahrenheit (°F)
 - Shows `unavailable` when the alert is disabled or removed
 
 ### Battery Sensors
+
 - Battery level percentage for wireless devices
 - Device class: `battery` | Unit: Percent (%)
 
 ### Binary Sensors
+
 - **Connectivity**: Device online/offline status
 - **Battery Low**: Alert when battery is below threshold
 
@@ -175,6 +185,7 @@ card:
 ```
 
 Color logic:
+
 - **Green** — normal, or no alert configured
 - **Orange** — within 10°F of the alert max threshold
 - **Red** — at or above the alert max threshold
@@ -233,27 +244,31 @@ automation:
 ## Troubleshooting
 
 ### Temperatures Showing as Unknown
+
 - Ensure the device is active in the FireBoard app with a live session
 - Check the device is online (`binary_sensor.<device>_connectivity`)
 - The REST API only returns `current_temp` for channels with active probe readings
 
 ### Authentication Errors
-- Verify credentials at https://fireboard.io
+
+- Verify credentials at <https://fireboard.io>
 - Ensure the email matches your FireBoard account exactly
 
 ### Rate Limit Errors
+
 - Increase the polling interval in the integration options
 - Default 60 seconds = 60 calls/hour, well within the 200 calls/hour limit
 - If you have multiple HA instances they share the same rate limit
 
 ### Devices Not Showing Up
+
 - Ensure devices are online in the FireBoard app
 - Restart Home Assistant after adding the integration
 - Check HA logs for errors under `custom_components.fireboard`
 
 ## Project Structure
 
-```
+```text
 Fireboard/
 ├── custom_components/
 │   └── fireboard/
@@ -273,13 +288,16 @@ Fireboard/
 ## Changelog
 
 ### v0.4.0
+
 - **Fix**: With debug logging on, the Home Assistant log no longer shows your FireBoard login cookies or security token
 
 ### v0.3.0
+
 - **New**: HACS support — Home Assistant shows an update when a new release is published
 - **Fix**: Removed leftover MQTT code and the `paho-mqtt` and `aiohttp` requirements
 
 ### v0.2.0
+
 - **Fix**: Temperatures no longer show as Unknown — `current_temp` now read from REST API directly
 - **New**: Alert threshold sensors (`alert_max`, `alert_min`) created automatically per channel
 - **New**: Dynamic entity registration — new channels and alerts appear without reload
@@ -288,6 +306,7 @@ Fireboard/
 - **Change**: Minimum polling interval updated to 60 seconds
 
 ### v0.1.0
+
 - Initial release (GarthDB)
 - Direct FireBoard Cloud API integration
 - UI-based configuration
