@@ -48,7 +48,9 @@
       "Bash(pytest tests/ *)",
       "Bash(flake8 custom_components/fireboard tests/)",
       "Bash(black --check custom_components/fireboard tests/)",
-      "Bash(isort --check-only custom_components/fireboard tests/)"
+      "Bash(isort --check-only custom_components/fireboard tests/)",
+      "Bash(flow-baseline --status:*)",
+      "Bash(flow-plugins:*)"
     ],
     "deny": [
       "Skill(commit-commands:commit-push-pr)",
