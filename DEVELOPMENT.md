@@ -57,7 +57,7 @@ ln -s $(pwd)/custom_components/fireboard ~/.homeassistant/custom_components/fire
 
 ## Project Structure
 
-```
+```text
 Fireboard/
 ├── custom_components/fireboard/
 │   ├── __init__.py          # Integration setup

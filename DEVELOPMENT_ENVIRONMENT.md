@@ -17,7 +17,7 @@ docker-compose up -d
 docker-compose logs -f homeassistant
 ```
 
-First startup takes 2–3 minutes. Once running, open http://localhost:8123 and complete the onboarding.
+First startup takes 2–3 minutes. Once running, open <http://localhost:8123> and complete the onboarding.
 
 The integration is automatically mounted into the container — any file changes take effect after a container restart.
 
@@ -83,7 +83,7 @@ docker exec homeassistant cat /config/home-assistant.log | grep fireboard
 ## Docker vs Production
 
 | | Docker | Production |
-|---|---|---|
+| --- | --- | --- |
 | Safety | Isolated | Risk to production |
 | Restart speed | ~2 seconds | ~30 seconds |
 | Log access | Easy | Harder |

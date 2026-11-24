@@ -23,6 +23,7 @@ Adjust the path if your HA config directory is elsewhere (e.g. `~/.homeassistant
 **Via UI**: Settings → System → Restart
 
 **Via command line**:
+
 ```bash
 # Home Assistant OS
 ha core restart
@@ -53,7 +54,7 @@ After a successful setup, check **Developer Tools → States** and search for yo
 The pattern is `sensor.<grill_name>_<channel_label>`. The examples below use "ike" as the grill name — substitute your own.
 
 | Entity type | Example (grill named "ike") | Notes |
-|---|---|---|
+| --- | --- | --- |
 | Temperature sensor | `sensor.ike_meat_probe_1` | One per channel with an active reading |
 | Alert max sensor | `sensor.kitchen_ike_meat_probe_1_alert_max` | Only for channels with an active alert |
 | Connectivity | `binary_sensor.ike_connectivity` | `on` = device online |
@@ -89,19 +90,23 @@ Then restart HA and check `home-assistant.log` for detailed output.
 ## Troubleshooting
 
 ### Integration not appearing in UI
+
 - Clear browser cache or try an incognito window
 - Verify `custom_components/fireboard/manifest.json` exists
 - Check HA logs for Python import errors
 
 ### Temperatures showing as Unknown
+
 - Confirm the device has an active session in the FireBoard app
 - Check that probes are physically inserted
 - Verify the device is online in the FireBoard app
 
 ### Authentication fails
-- Test credentials at https://fireboard.io
+
+- Test credentials at <https://fireboard.io>
 - Check HA logs for the specific error
 
 ### Rate limit errors
+
 - Increase the polling interval (remove and re-add the integration to change it)
 - Default 60s = 60 calls/hour, well within the 200/hour limit
